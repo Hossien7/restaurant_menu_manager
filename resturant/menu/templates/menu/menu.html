@@ -137,7 +137,7 @@ body {
 
 </style>
 <div class="menu-container">
-    <h1 class="text-center mb-4" style="color:#1976d2;">منوی رستوران</h1>
+    <h1 class="text-center mb-4" style="color:#1976d2;">منوی سه بعدی رستوران</h1>
     {% for category in categories %}
 <div class="category-section mb-5">
     <h2 class="category-title">{{ category.name }}</h2>
@@ -164,6 +164,12 @@ body {
                 <div class="item-price">
                     {{ item.price }} تومان
                 </div>
+                <div>
+                    <a href="{% url 'menu:item_detail' item.id %}" class="btn btn-primary mt-2" 
+                        style="background-color:#1976d2; border-color:#1976d2;">
+                        مشاهده محصول
+                    </a>
+                </div>
             </div>
             {% endif %}
         {% endfor %}
@@ -171,4 +177,20 @@ body {
 </div>
 {% endfor %}
 </div>
+<!-- اسکریپت تبدیل اعداد به فارسی -->
+<script>
+    function toPersianDigits(str) {
+        const persianMap = {
+            0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴',
+            5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'
+        };
+        return str.toString().replace(/\d/g, d => persianMap[d]);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".item-price").forEach(function (el) {
+            el.innerHTML = toPersianDigits(el.innerHTML);
+        });
+    });
+</script>
 {% endblock %}

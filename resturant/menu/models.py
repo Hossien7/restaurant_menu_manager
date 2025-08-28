@@ -26,6 +26,7 @@ class MenuItem(models.Model):
     is_icy = models.BooleanField(default=False)
     is_coffee = models.BooleanField(default=False)
     image = models.ImageField(upload_to='menu_items/', blank=True, null=True)
+    D_model = models.FileField(upload_to='3d_models/', blank=True, null=True)
 
 
     def __str__(self):
